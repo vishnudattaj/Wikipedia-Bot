@@ -48,10 +48,11 @@ async def on_message_delete(message):
     user = await client.fetch_user(879543434849955850)
     await user.send(msg)
 
-image_types = ["png", "jpeg", "gif", "jpg"]
+
 
 @client.event
 async def on_message1(message: discord.Message):
+    image_types = ["png", "jpeg", "gif", "jpg"]
     for attachment in message.attachments:
         if any(attachment.filename.lower().endswith(image) for image in image_types):
             if message.author == client.user:
