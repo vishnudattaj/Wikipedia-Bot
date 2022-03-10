@@ -51,7 +51,10 @@ async def on_message_delete(message):
     await master.send(msg)
     
     
+image_types = ["png", "jpeg", "gif", "jpg"]
 
+    
+    
 @client.event
 async def on_message(message: discord.Message):
     for attachment in message.attachments:
