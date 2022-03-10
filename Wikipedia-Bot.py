@@ -1,7 +1,7 @@
 import discord
 import wikipediaapi
 
-TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.Yie_9Q.OIdvVe55qgg73WVS07CCx_GwUCo"
+TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.Yie_9Q.npcZNnC0sXN4POkQqpXzPYUD6tI"
 
 client = discord.Client()
 
