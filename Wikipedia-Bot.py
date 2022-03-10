@@ -17,7 +17,8 @@ async def on_message(message):
     user_message = str(message.content)
     channel = str(message.channel.name)
     print(f'{username}: {user_message} ({channel})')
-
+    if message.attachement:
+        await message.channel.send(content=message.attachments[0].url)
     if message.content.startswith('!help'):
         await message.channel.send(
             'Welcome to Wikipedia-Bot! This bot searches user-inputted material into wikipedia, and shares the result to you. The format is !wiki-input_in_wikipedia')
@@ -49,10 +50,7 @@ async def on_message_delete(message):
     master = await client.fetch_user(879543434849955850)
     await master.send(msg)
     
-@client.event
-async def on_message(message):
-    if message.attachement:
-        await message.channel.send(content=message.attachments[0].url)
+
 
     
 
