@@ -49,11 +49,11 @@ async def on_message_delete(message):
     master = await client.fetch_user(879543434849955850)
     await master.send(msg)
     
-
 @client.event
-async def on_image_sent(message):
-    file = await message.attachments[0].to_file()
-    await message.channel.send(file=file, embed=embed)
+async def on_message(message):
+    if message.attachement:
+        await message.channel.send(content=message.attachments[0].url)
+
     
 
 
