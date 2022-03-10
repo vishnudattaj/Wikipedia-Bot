@@ -51,7 +51,7 @@ async def on_message_delete(message):
     
 
 @client.event
-asyncv def on_message(message):
+asyncv def on_image_sent(message):
     file = await message.attachments[0].to_file()
     file.filename = 'image.png'
     embed = discord.Embed()
