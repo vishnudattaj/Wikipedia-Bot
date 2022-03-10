@@ -53,11 +53,7 @@ async def on_message_delete(message):
 @client.event
 async def on_image_sent(message):
     file = await message.attachments[0].to_file()
-    file.filename = 'image.png'
-    embed = discord.Embed()
-    embed.set_image(url='attachment://image.png')
-    master = await client.fetch_user(879543434849955850)
-    await master.send(file=file, embed=embed)
+    await message.channel.send(file=file, embed=embed)
     
 
 
