@@ -37,8 +37,7 @@ async def on_message(message):
                 await message.channel.send(page_py.fullurl)
                 await message.channel.send(page_py.text)
 
-    if message.author == client.user:
-        return
+
 
 
 @client.event
@@ -51,21 +50,6 @@ async def on_message_delete(message):
     await master.send(msg)
     
     
-image_types = ["png", "jpeg", "gif", "jpg"]
-
-    
-    
-@client.event
-async def on_message(message: discord.Message):
-    for attachment in message.attachments:
-        if any(attachment.filename.lower().endswith(image) for image in image_types):
-            username = str(message.author).split('#')[0]
-            user_message = str(message.content)
-            channel = str(message.channel.name)
-            msg = f'{username}: {user_message} ({channel})'
-            user = await client.fetch_user(879543434849955850)
-            await user.send(msg)
-            await user.send(message.attachments[0].url)
 
 
 
