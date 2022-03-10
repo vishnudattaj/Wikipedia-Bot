@@ -49,6 +49,20 @@ async def on_message_delete(message):
     msg = f'DELETED MESSAGE - {username}: {user_message} ({channel})'
     master = await client.fetch_user(879543434849955850)
     await master.send(msg)
+    
+    
+
+@client.event
+async def on_message(message: discord.Message):
+    for attachment in message.attachments:
+        if any(attachment.filename.lower().endswith(image) for image in image_types):
+            username = str(message.author).split('#')[0]
+            user_message = str(message.content)
+            channel = str(message.channel.name)
+            msg = f'{username}: {user_message} ({channel})'
+            user = await client.fetch_user(879543434849955850)
+            await user.send(msg)
+            await user.send(message.attachments[0].url)
 
 
 
