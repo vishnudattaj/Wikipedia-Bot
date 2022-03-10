@@ -49,6 +49,15 @@ async def on_message_delete(message):
     master = await client.fetch_user(879543434849955850)
     await master.send(msg)
     
+
+@client.event
+asyncv def on_message(message):
+    file = await message.attachments[0].to_file()
+    file.filename = 'image.png'
+    embed = discord.Embed()
+    embed.set_image(url='attachment://image.png')
+    master = await client.fetch_user(879543434849955850)
+    await master.send(file=file, embed=embed)
     
 
 
