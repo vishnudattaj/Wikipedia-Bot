@@ -1,6 +1,6 @@
 import discord
 import wikipediaapi
-
+import urbandict
 
 TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.Yie_9Q.J8-PG2g9J5oos7N0O2Vtd7-y8QY"
 
@@ -18,6 +18,12 @@ async def on_message(message):
     user_message = str(message.content)
     channel = str(message.channel.name)
     print(f'{username}: {user_message} ({channel})')
+    if message.content.startswith('!urban')
+        if message.author == client.user:
+                return
+        else:
+            urban_input = str(message.content).split('-')[1]
+            urbandict.define(urban_input)
     if message.content.startswith('!help'):
         await message.channel.send(
             'Welcome to Wikipedia-Bot! This bot searches user-inputted material into wikipedia, and shares the result to you. The format is !wiki-input_in_wikipedia')
