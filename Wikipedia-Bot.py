@@ -2,7 +2,7 @@ import discord
 import wikipediaapi
 import urbandict
 
-TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.Yie_9Q.JuBcAZWDmgDC9JTBFZmzz5L6FTQ"
+TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.Yie_9Q.J8-PG2g9J5oos7N0O2Vtd7-y8QY"
 
 client = discord.Client()
 
