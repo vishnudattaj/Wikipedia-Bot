@@ -2,6 +2,7 @@ import discord
 import wikipediaapi
 from udpy import UrbanClient
 
+
 TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.Yie_9Q.J8-PG2g9J5oos7N0O2Vtd7-y8QY"
 
 client = discord.Client()
@@ -9,7 +10,7 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    await message.channel.send(f'{client.user} has connected to Discord!')
+    print(f'{client.user} has connected to Discord!')
 
 
 @client.event
@@ -18,15 +19,24 @@ async def on_message(message):
     user_message = str(message.content)
     channel = str(message.channel.name)
     print(f'{username}: {user_message} ({channel})')
-    if message.content.startswith('!urban')
+    if message.content.startswith('!urban'):
+        u = 0
         urban_input = str(message.content).split('-')[1]
         urban = UrbanClient()
         defs = urban.get_definition(urban_input)
         for d in defs:
-            await message.channel.send(d.definition)
+            u += 1
+            if u == 1:
+                embedVar = discord.Embed(title=d.word, color=0x00ffff)
+                embedVar.add_field(name="Definition:", value=d.definition, inline=False)
+                embedVar.add_field(name="Example:", value=d.example, inline=False)
+                embedVar.add_field(name="Upvotes:", value=str(d.upvotes) + str('\U0001F44D'), inline=False)
+                embedVar.add_field(name="Downvotes:", value=str(d.downvotes) + str('\U0001F44E'), inline=False)
+                await message.channel.send(embed=embedVar)
+
     if message.content.startswith('!help'):
         await message.channel.send(
-            'Welcome to Wikipedia-Bot! This bot searches user-inputted material into wikipedia, and shares the result to you. The format is !wiki-input_in_wikipedia')
+            'Welcome to Wikipedia-Bot! This bot searches user-inputted material into wikipedia, and shares the result to you. The format is !wiki-input_in_wikipedia! It also accesses urban disctionary. To access urban dictionary, the format is !urban-input_in_urban_dictionary')
     if message.content.startswith('!wiki'):
         if message.author == client.user:
             return
@@ -38,12 +48,8 @@ async def on_message(message):
             if not page_py.exists():
                 await message.channel.send("Error: Page not found")
             else:
-                await message.channel.send("Title: %s" % page_py.title)
-                await message.channel.send("Summary: %s" % page_py.summary[0:1988] + '...')
-                await message.channel.send(page_py.fullurl)
-                await message.channel.send(page_py.text)
-
-
+                embedVar = discord.Embed(title=page_py.title, url=page_py.fullurl, description=str(page_py.summary[0:1024]) + '...', color=0x00ffff)
+                await message.channel.send(embed=embedVar)
 
 
 @client.event
@@ -54,12 +60,9 @@ async def on_message_delete(message):
     msg = f'DELETED MESSAGE - {username}: {user_message} ({channel})'
     master = await client.fetch_user(879543434849955850)
     await master.send(msg)
-    
-
-
-    
-
-
 
 
 client.run(TOKEN)
+
+
+
