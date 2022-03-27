@@ -2,6 +2,7 @@ import discord
 import wikipediaapi
 from udpy import UrbanClient
 
+
 TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.Yie_9Q.J8-PG2g9J5oos7N0O2Vtd7-y8QY"
 
 client = discord.Client()
@@ -33,10 +34,10 @@ async def on_message(message):
                 await message.channel.send(embed=embed_var)
 
     if message.content.startswith('!help'):
-        await message.channel.send(
-            'Welcome to Wikipedia-Bot! This bot searches user-inputted material into wikipedia, and shares the result to you. '
-            'The format is !wiki-input_in_wikipedia! It also accesses urban dictionary. '
-            'To access urban dictionary, the format is !urban-input_in_urban_dictionary')
+        embed_var2 = discord.Embed(title='Commands', color=0xFF0000)
+        embed_var2.add_field(name="Wikipedia:", value='!wiki-input', inline=False)
+        embed_var2.add_field(name="Urban Dictionary:", value='!urban-input', inline=False)
+        await message.channel.send(embed=embed_var2)
     if message.content.startswith('!wiki'):
         if message.author == client.user:
             return
@@ -48,7 +49,7 @@ async def on_message(message):
             if not page_py.exists():
                 await message.channel.send("Error: Page not found")
             else:
-                embed_var1 = discord.Embed(title=page_py.title, url=page_py.fullurl, description=str(page_py.summary[0:1024]) + '...', color=0x00ffff)
+                embed_var1 = discord.Embed(title=page_py.title, url=page_py.fullurl, description=str(page_py.summary[0:1024]) + '...', color=0xFFFF00)
                 await message.channel.send(embed=embed_var1)
 
 
