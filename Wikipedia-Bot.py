@@ -26,7 +26,7 @@ async def on_message(message):
         for d in urban.get_definition(urban_input):
             u += 1
             if u == 1:
-                embed_var = discord.Embed(title=d.word, url='https://www.urbandictionary.com/define.php?term=hello.' + str(d.word), color=0x00ffff)
+                embed_var = discord.Embed(title=d.word, url='https://www.urbandictionary.com/define.php?term=' + str(d.word), color=0x00ffff)
                 embed_var.add_field(name="Definition:", value=d.definition, inline=False)
                 embed_var.add_field(name="Example:", value=d.example, inline=False)
                 embed_var.add_field(name="Upvotes:", value=str(d.upvotes) + str('\U0001F44D'), inline=False)
