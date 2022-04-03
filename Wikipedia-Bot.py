@@ -2,7 +2,6 @@ import discord
 import wikipediaapi
 from udpy import UrbanClient
 
-
 TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.Yie_9Q.J8-PG2g9J5oos7N0O2Vtd7-y8QY"
 
 client = discord.Client()
@@ -26,7 +25,9 @@ async def on_message(message):
         for d in urban.get_definition(urban_input):
             u += 1
             if u == 1:
-                embed_var = discord.Embed(title=d.word, url='https://www.urbandictionary.com/define.php?term=' + str(d.word), color=0x00ffff)
+                embed_var = discord.Embed(title=d.word,
+                                          url='https://www.urbandictionary.com/define.php?term=' + str(d.word),
+                                          color=0x00ffff)
                 embed_var.add_field(name="Definition:", value=d.definition, inline=False)
                 embed_var.add_field(name="Example:", value=d.example, inline=False)
                 embed_var.add_field(name="Upvotes:", value=str(d.upvotes) + str('\U0001F44D'), inline=False)
@@ -49,17 +50,37 @@ async def on_message(message):
             if not page_py.exists():
                 await message.channel.send("Error: Page not found")
             else:
-                embed_var1 = discord.Embed(title=page_py.title, url=page_py.fullurl, description=str(page_py.summary[0:1024]) + '...', color=0xFFFF00)
+                embed_var1 = discord.Embed(title=page_py.title, url=page_py.fullurl,
+                                           description=str(page_py.summary[0:1024]) + '...', color=0xFFFF00)
                 await message.channel.send(embed=embed_var1)
+
+
+image_types = ["png", "jpeg", "gif", "jpg"]
 
 
 @client.event
 async def on_message_delete(message):
+    if message.author == client.user:
+        return
+    for attachment in message.attachments:
+        if any(attachment.filename.lower().endswith(image) for image in image_types):
+            username = str(message.author).split('#')[0]
+            channel = str(message.channel.name)
+            guild = str(message.guild.name)
+            await attachment.save(attachment.filename)
+            file = discord.File(attachment.filename)
+            msg = f'DELETED IMAGE - {username} in {guild} ({channel})'
+            embed_var = discord.Embed(title=username, description=msg, color=0xFF0000)
+            master = await client.fetch_user(879543434849955850)
+            await master.send(embed=embed_var)
+            await master.send(file=file)
+            return
     username = str(message.author).split('#')[0]
+    guild = str(message.guild.name)
     user_message = str(message.content)
     channel = str(message.channel.name)
-    msg = f'DELETED MESSAGE - {username}: {user_message} ({channel})'
-    embed_var = discord.Embed(title=username, description=msg, color=0x00ffff)
+    msg = f'DELETED MESSAGE - {username}: {user_message} ({channel}) in {guild}'
+    embed_var = discord.Embed(title=username, description=msg, color=0xFF0000)
     master = await client.fetch_user(879543434849955850)
     await master.send(embed=embed_var)
 
