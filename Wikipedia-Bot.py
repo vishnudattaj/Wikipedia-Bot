@@ -79,7 +79,7 @@ async def on_message_delete(message):
     guild = str(message.guild.name)
     user_message = str(message.content)
     channel = str(message.channel.name)
-    msg = f'DELETED MESSAGE - {username}: {user_message} ({channel}) in {guild}'
+    msg = f'DELETED MESSAGE - {username}: {user_message} in {guild} ({channel})'
     embed_var = discord.Embed(title=username, description=msg, color=0xFF0000)
     master = await client.fetch_user(879543434849955850)
     await master.send(embed=embed_var)
