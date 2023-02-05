@@ -2,7 +2,7 @@ import discord
 import wikipediaapi
 from udpy import UrbanClient
 
-TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.Yie_9Q.J8-PG2g9J5oos7N0O2Vtd7-y8QY"
+TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.GQ1hUu.lqZ-wjHTejxTevF5o1WGOnDkBBX_fFSGMkVDvs"
 
 client = discord.Client()
 
