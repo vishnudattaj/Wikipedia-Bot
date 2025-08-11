@@ -2,7 +2,7 @@ import discord
 import wikipediaapi
 from udpy import UrbanClient
 
-TOKEN = "OTUwODU2MzIxNTEzNjg1MDAy.GQ1hUu.lqZ-wjHTejxTevF5o1WGOnDkBBX_fFSGMkVDvs"
+TOKEN = "INSERT_TOKEN_HERE"
 
 client = discord.Client()
 
@@ -88,3 +88,4 @@ async def on_message_delete(message):
 client.run(TOKEN)
 
 # end
+
